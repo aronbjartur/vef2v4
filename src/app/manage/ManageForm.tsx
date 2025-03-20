@@ -35,17 +35,22 @@ export default function ManageForm({ initialCategories }: ManageFormProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!isFormValid) return;
-
+  
     setMessage("");
-
+  
+    const formData = new FormData();
+    formData.append("question", question);
+    answers.forEach((answer) => formData.append("answers[]", answer));
+    formData.append("correct_answer", correctAnswer?.toString() || "");
+    
+    if (selectedCategory === "new") {
+      formData.append("new_category", newCategory);
+    } else {
+      formData.append("category_id", selectedCategory);
+    }
+  
     try {
-      await submitQuestion({
-        question,
-        answers,
-        correct_answer: correctAnswer,
-        ...(selectedCategory === "new" ? { new_category: newCategory } : { category_id: selectedCategory }),
-      });
-
+      await submitQuestion(formData);
       setMessage("spurning skráð!");
       setQuestion("");
       setAnswers(["", "", "", ""]);
