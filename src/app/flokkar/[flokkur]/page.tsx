@@ -4,7 +4,9 @@ import { notFound } from 'next/navigation';
 import Category from '@/components/Category/Category';
 
 export default async function CategoryPage({ params }: { params: { flokkur: string } }) {
-  const { flokkur } = params;
+  // Await the params to satisfy the PageProps constraint.
+  const { flokkur } = await Promise.resolve(params);
+
   const api = new QuestionsApi();
   const categoryData = await api.getCategory(flokkur);
 
