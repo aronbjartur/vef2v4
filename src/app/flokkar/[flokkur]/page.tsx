@@ -4,21 +4,17 @@ import { notFound } from 'next/navigation';
 import Category from '@/components/Category/Category';
 
 type CategoryPageProps = {
-  params: { flokkur: string } | Promise<{ flokkur: string }>;
+  params: Promise<{ flokkur: string }>;
 };
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
-  // Ensure that params is a resolved object:
-  const resolvedParams = params instanceof Promise ? await params : params;
-  const { flokkur } = resolvedParams;
-
+  // Await the params immediately:
+  const { flokkur } = await params;
   const api = new QuestionsApi();
   const categoryData = await api.getCategory(flokkur);
-
   if (!categoryData) {
     notFound();
   }
-
   return (
     <div>
       <Navigation />
