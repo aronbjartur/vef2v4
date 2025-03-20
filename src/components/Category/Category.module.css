@@ -1,0 +1,64 @@
+.categoryContainer {
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 20px;
+  }
+  
+  .quiz {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .questionBlock {
+    background: #222;
+    padding: 16px;
+    border-radius: 8px;
+    text-align: left;
+  }
+  
+  .questionText {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  
+  .answersList {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .answerItem {
+    margin: 5px 0;
+  }
+  
+  .button {
+    background: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .button:hover {
+    background: #0056b3;
+  }
+  
+  .result {
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .noQuestions {
+    color: gray;
+    font-style: italic;
+  }
