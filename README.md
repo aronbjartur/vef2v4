@@ -1,4 +1,9 @@
+https://vef2v4.vercel.app/
 
+## llm notkun
+notaði gbt og copilot, notaði svo bara gbt í seinnustu nokkur commitin því ég var ekki að ná að setja á vercel
+
+eslint með enginn errors, bara nokkur warnings
 
 
 ## fyrir neðan er readme sem kom með react
