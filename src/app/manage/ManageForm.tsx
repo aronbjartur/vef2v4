@@ -20,13 +20,15 @@ export default function ManageForm({ initialCategories }: ManageFormProps) {
   const [isFormValid, setIsFormValid] = useState(false);
 
   const validateForm = () => {
-    const isValid =
-      ((selectedCategory && selectedCategory !== "new") ||
-        (selectedCategory === "new" && newCategory.trim())) &&
-      question.trim() &&
-      answers.every((ans) => ans.trim()) &&
-      correctAnswer !== null;
-
+    const isValid = Boolean(
+      (
+        ((selectedCategory && selectedCategory !== "new") ||
+          (selectedCategory === "new" && newCategory.trim())) &&
+        question.trim() &&
+        answers.every((ans) => ans.trim()) &&
+        correctAnswer !== null
+      )
+    );
     setIsFormValid(isValid);
   };
 
