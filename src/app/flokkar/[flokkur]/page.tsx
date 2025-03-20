@@ -3,14 +3,15 @@ import { QuestionsApi } from '@/api';
 import { notFound } from 'next/navigation';
 import Category from '@/components/Category/Category';
 
-export default async function CategoryPage({
-  params,
-}: {
-  // Allow params to be either an object or a Promise resolving to an object.
+type CategoryPageProps = {
   params: { flokkur: string } | Promise<{ flokkur: string }>;
-}) {
-  // Use Promise.resolve so that if params is not already a Promise, it becomes one.
-  const { flokkur } = await Promise.resolve(params);
+};
+
+export default async function CategoryPage({ params }: CategoryPageProps) {
+  // Ensure that params is a resolved object:
+  const resolvedParams = params instanceof Promise ? await params : params;
+  const { flokkur } = resolvedParams;
+
   const api = new QuestionsApi();
   const categoryData = await api.getCategory(flokkur);
 
