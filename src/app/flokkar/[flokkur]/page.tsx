@@ -3,26 +3,13 @@ import { QuestionsApi } from '@/api';
 import { notFound } from 'next/navigation';
 import Category from '@/components/Category/Category';
 
-type Params = {
-  params: {
-    flokkur: string;
-  };
-};
-
-async function getCategoryData(slug: string) {
-    const api = new QuestionsApi();
-    const category = await api.getCategory(slug.toLowerCase().replace(/\s+/g, '-')); 
-  
-    return category || null;
-  }
-
-export default async function CategoryPage({ params }: Params) {
+export default async function CategoryPage({ params }: { params: { flokkur: string } }) {
   const { flokkur } = params;
-  const categoryData = await getCategoryData(flokkur);
+  const api = new QuestionsApi();
+  const categoryData = await api.getCategory(flokkur);
 
   if (!categoryData) {
     notFound();
-    return null;
   }
 
   return (
